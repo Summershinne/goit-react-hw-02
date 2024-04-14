@@ -3,15 +3,18 @@ import Description from './Description/Description'
 import Options from './Options/Options'
 import Feedback from './Feedback/Feedback'
 
-const [feadback, setFeadback] = useState((){
-     
-    return {
-	good: 0,
-	neutral: 0,
-	bad: 0
-}})
-
 export default function App() {
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = localStorage.getItem("feedbackCount");
+    if (savedFeedback !== null) {
+      return JSON.parse(savedFeedback)
+    }
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0
+    };
+  });
   return (
     <div>
       <Description />
